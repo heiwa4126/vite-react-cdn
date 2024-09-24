@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import viteLogo from "/vite.svg";
+import { Cowsay } from "./Cowsay";
 import reactLogo from "./assets/react.svg";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
 				</p>
 			</div>
 			<p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+			<Cowsay text="Hello CDN !!" />
 		</>
 	);
 }

@@ -9,9 +9,20 @@ Vite の Plugin は 何種類かあるみたい。
 
 ## 最初の実験 (tag: step1)
 
-[上を使って](https://www.npmjs.com/package/vite-plugin-cdn-import) jsDelivr から React まわりを取得してみる。
+[上の vite-plugin-cdn-import を使って](https://www.npmjs.com/package/vite-plugin-cdn-import) jsDelivr から React まわりを取得してみる。
 設定は [vite-plugin-cdn-import](https://www.npmjs.com/package/vite-plugin-cdn-import)の "Use preset" のところにあるやつを使用。
-([vite.config.ts](vite.config.ts)参照)。
+
+[vite.config.ts](vite.config.ts)参照。以下は要点だけ
+
+```typescript
+import cdn from "vite-plugin-cdn-import";
+
+　plugins: [
+  	cdn({
+			modules: ["react", "react-dom"],
+		}),
+	],
+```
 
 `bun run dev` では ローカルの npm_modules/以下を使用する。`bun run build`　して `bun run preview`
 
@@ -41,7 +52,7 @@ dist/assets/index-DOwLkL4p.js   13.77 kB │ gzip: 5.83 kB
 `dist/index.html`　には
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <script
@@ -71,3 +82,5 @@ $ bun pm ls | grep react
 なのでバージョンも一致している (たまたま「最新」というだけかも)。
 
 ## ステップ 2 - Preset packages にないものを使ってみる
+
+[vite-plugin-cdn-import](https://www.npmjs.com/package/vite-plugin-cdn-import)の Preset にないものを使ってみる。

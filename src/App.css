@@ -40,3 +40,8 @@
 .read-the-docs {
 	color: #888;
 }
+
+pre {
+	font-family: "Courier New", "Consolas", "Menlo", monospace;
+	text-align: left;
+}
