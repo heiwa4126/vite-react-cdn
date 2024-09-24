@@ -7,7 +7,15 @@ export default defineConfig({
 	plugins: [
 		react(),
 		cdn({
-			modules: ["react", "react-dom"],
+			modules: [
+				"react",
+				"react-dom",
+				{
+					name: "cowsay",
+					var: "cowsay",
+					path: "build/cowsay.umd.min.js",
+				},
+			],
 		}),
 	],
 });

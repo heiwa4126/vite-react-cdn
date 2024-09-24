@@ -52,7 +52,7 @@ dist/assets/index-DOwLkL4p.js   13.77 kB │ gzip: 5.83 kB
 `dist/index.html`　には
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <script
@@ -84,3 +84,82 @@ $ bun pm ls | grep react
 ## ステップ 2 - Preset packages にないものを使ってみる
 
 [vite-plugin-cdn-import](https://www.npmjs.com/package/vite-plugin-cdn-import)の Preset にないものを使ってみる。
+
+これを追加した。
+
+- npmjs 上 - [cowsay - npm](https://www.npmjs.com/package/cowsay)
+- jsDelivr 上 - [cowsay CDN by jsDelivr - A CDN for npm and GitHub](https://www.jsdelivr.com/package/npm/cowsay)
+
+before:
+
+```console
+$ bun run build
+$ tsc -b && vite build
+vite v5.4.7 building for production...
+✓ 22 modules transformed.
+dist/index.html                  0.71 kB │ gzip: 0.37 kB
+dist/assets/index-DGMOvZdB.css   1.46 kB │ gzip: 0.75 kB
+dist/assets/index-6VT5elqj.js   17.17 kB │ gzip: 7.40 kB
+```
+
+Cowsay の分だけ `dist/assets/index-*.js` のサイズが増えてる。
+
+vite.config.ts はこんな感じ
+
+```typescript
+cdn({
+			modules: [
+				"react",
+				"react-dom",
+				{
+					name: "cowsay",
+					var: "cowsay",
+					path: "build/cowsay.umd.min.js",
+				},
+			],
+		}),
+```
+
+name は `npm i`したパッケージの名前と一致させるらしい。
+
+var は.tsx などで import してる名前と一致させるらしい。
+
+after:
+
+```
+$ bun run build
+$ tsc -b && vite build
+vite v5.4.7 building for production...
+✓ 21 modules transformed.
+dist/index.html                  0.83 kB │ gzip: 0.39 kB
+dist/assets/index-DGMOvZdB.css   1.46 kB │ gzip: 0.75 kB
+dist/assets/index-C56sNEog.js   13.88 kB │ gzip: 5.88 kB
+```
+
+```html
+<html lang="en">
+  <head>
+    <script
+      src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/cowsay@1.6.0/build/cowsay.umd.min.js" crossorigin="anonymous"></script>
+  </head>
+</html>
+```
+
+### 疑問点: UMD と build とは?
+
+いろいろ解説を読んだけどよくわからん。
+普通に npm publish してできるのは UMD ではないらしい。
+
+jsDelivr などの該当ページ行って確認するしかない。
+
+例えば
+
+- [UNPKG - react](https://unpkg.com/browse/react@18.3.1/) umd フォルダ
+- [UNPKG - cowsay](https://www.unpkg.com/browse/cowsay@1.6.0/) build フォルダ
