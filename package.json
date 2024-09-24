@@ -8,8 +8,8 @@
 		"build": "tsc -b && vite build",
 		"preview": "vite preview",
 		"format": "biome format --write . && prettier . --write",
-		"lint": "biome lint .",
-		"check": "biome check --write . && prettier . --check"
+		"lint": "biome lint . && prettier . --check",
+		"check": "biome check --write . && prettier . --write"
 	},
 	"dependencies": {
 		"react": "^18.3.1",
