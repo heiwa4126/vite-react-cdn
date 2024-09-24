@@ -7,7 +7,7 @@ Vite の Plugin は 何種類かあるみたい。
 - [vite-plugin-cdn-import - npm](https://www.npmjs.com/package/vite-plugin-cdn-import)
 - [vite-plugin-cdn2 - npm](https://www.npmjs.com/package/vite-plugin-cdn2)
 
-## 最初の実験
+## 最初の実験 (tag: step1)
 
 [上を使って](https://www.npmjs.com/package/vite-plugin-cdn-import) jsDelivr から React まわりを取得してみる。
 設定は [vite-plugin-cdn-import](https://www.npmjs.com/package/vite-plugin-cdn-import)の "Use preset" のところにあるやつを使用。
@@ -68,4 +68,6 @@ $ bun pm ls | grep react
 (略)
 ```
 
-なのでバージョンも一致している (たまたま最新というだけかも)。
+なのでバージョンも一致している (たまたま「最新」というだけかも)。
+
+## ステップ 2 - Preset packages にないものを使ってみる
