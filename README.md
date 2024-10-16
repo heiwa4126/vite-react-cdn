@@ -17,14 +17,14 @@ Vite の Plugin は 何種類かあるみたい。
 ```typescript
 import cdn from "vite-plugin-cdn-import";
 
-　plugins: [
+ plugins: [
   	cdn({
 			modules: ["react", "react-dom"],
 		}),
 	],
 ```
 
-`bun run dev` では ローカルの npm_modules/以下を使用する。`bun run build`　して `bun run preview`
+`bun run dev` では ローカルの npm_modules/以下を使用する。`bun run build` して `bun run preview`
 
 before:
 
@@ -49,10 +49,10 @@ dist/assets/index-DiwrgTda.css   1.39 kB │ gzip: 0.72 kB
 dist/assets/index-DOwLkL4p.js   13.77 kB │ gzip: 5.83 kB
 ```
 
-`dist/index.html`　には
+`dist/index.html` には
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <script
@@ -81,7 +81,7 @@ $ bun pm ls | grep react
 
 なのでバージョンも一致している (たまたま「最新」というだけかも)。
 
-## ステップ 2 - Preset packages にないものを使ってみる
+## ステップ 2 (tag: step2) - Preset packages にないものを使ってみる
 
 [vite-plugin-cdn-import](https://www.npmjs.com/package/vite-plugin-cdn-import)の Preset にないものを使ってみる。
 
@@ -147,7 +147,10 @@ dist/assets/index-C56sNEog.js   13.88 kB │ gzip: 5.88 kB
       src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"
       crossorigin="anonymous"
     ></script>
-    <script src="https://cdn.jsdelivr.net/npm/cowsay@1.6.0/build/cowsay.umd.min.js" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/cowsay@1.6.0/build/cowsay.umd.min.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
 </html>
 ```
@@ -163,3 +166,41 @@ jsDelivr などの該当ページ行って確認するしかない。
 
 - [UNPKG - react](https://unpkg.com/browse/react@18.3.1/) umd フォルダ
 - [UNPKG - cowsay](https://www.unpkg.com/browse/cowsay@1.6.0/) build フォルダ
+
+## ステップ 3 - Cowsay を UNPKG から取ってみる
+
+あれこれやったけど、こんな感じ
+
+vite.config.ts:
+
+```typescript
+cdn({
+			modules: [
+				"react",
+				"react-dom",
+				{
+					name: "cowsay",
+					var: "cowsay",
+					// path: "build/cowsay.umd.min.js",
+					// jsDelivrの場合はこれで終わり
+					// UNPKGの場合
+					prodUrl: "https://unpkg.com/{name}@{version}/{path}",
+					path: "build/cowsay.umd.js", //UNPKGにはminがないらしい
+				},
+			],
+		}),
+```
+
+UNPKG に minify が無い件に関して、
+UNPKG, jsDelivr, cdnjs はそれぞれ
+ポリシーが違うらしい。
+
+ざっくりとした比較を ChatGPT-4o に作ってもらった。
+
+| 項目                   | UNPKG                                              | jsDelivr                                                 | CDNJS                                           |
+| ---------------------- | -------------------------------------------------- | -------------------------------------------------------- | ----------------------------------------------- |
+| **目的**               | npm パッケージをそのまま CDN 経由で配布            | npm、GitHub、WordPress からのファイル配布                | 人気のある Web ライブラリを事前にホストして配布 |
+| **minify 版の提供**    | パッケージに含まれていれば提供するが、自動ではない | パッケージ内に minify 版があれば提供、ない場合は自動圧縮 | ほとんどのライブラリで minified 版を提供        |
+| **ビルドや圧縮**       | なし(パッケージ内容に依存)                         | 自動圧縮やキャッシュ最適化をサポート                     | ライブラリに付属する minified 版を配布          |
+| **柔軟なファイル指定** | npm パッケージ内の任意ファイルを指定可能           | 任意のバージョンやファイル指定が可能                     | ライブラリごとのファイルが事前にホスト          |
+| **利用対象の範囲**     | npm のすべてのパッケージ                           | npm、GitHub、他のソースからも配布                        | 人気のあるライブラリに限定される                |
