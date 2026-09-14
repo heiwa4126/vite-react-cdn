@@ -2,7 +2,7 @@
 
 Vite の React で CDN を使ってみる。Bun を使ったけど、npm, pnpm, yarn でも動くと思う
 
-Vite の Plugin は 何種類かあるみたい。
+Vite の Plugin は何種類かあるみたい。
 
 - [vite-plugin-cdn-import - npm](https://www.npmjs.com/package/vite-plugin-cdn-import)
 - [vite-plugin-cdn2 - npm](https://www.npmjs.com/package/vite-plugin-cdn2)
@@ -24,7 +24,7 @@ import cdn from "vite-plugin-cdn-import";
 	],
 ```
 
-`bun run dev` では ローカルの npm_modules/以下を使用する。`bun run build` して `bun run preview`
+`bun run dev`ではローカルの npm_modules/以下を使用する。`bun run build`して`bun run preview`
 
 before:
 
@@ -49,23 +49,23 @@ dist/assets/index-DiwrgTda.css   1.39 kB │ gzip: 0.72 kB
 dist/assets/index-DOwLkL4p.js   13.77 kB │ gzip: 5.83 kB
 ```
 
-`dist/index.html` には
+`dist/index.html`には
 
 ```html
 <!doctype html>
 <html lang="en">
-  <head>
-    <script
-      src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"
-      crossorigin="anonymous"
-    ></script>
+	<head>
+		<script
+			src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"
+			crossorigin="anonymous"
+		></script>
 
-    <meta charset="UTF-8" />
-  </head>
+		<meta charset="UTF-8" />
+	</head>
 </html>
 ```
 
@@ -102,7 +102,7 @@ dist/assets/index-DGMOvZdB.css   1.46 kB │ gzip: 0.75 kB
 dist/assets/index-6VT5elqj.js   17.17 kB │ gzip: 7.40 kB
 ```
 
-Cowsay の分だけ `dist/assets/index-*.js` のサイズが増えてる。
+Cowsay の分だけ`dist/assets/index-*.js`のサイズが増えてる。
 
 vite.config.ts はこんな感じ
 
@@ -120,7 +120,7 @@ cdn({
 		}),
 ```
 
-name は `npm i`したパッケージの名前と一致させるらしい。
+name は`npm i`したパッケージの名前と一致させるらしい。
 
 var は.tsx などで import してる名前と一致させるらしい。
 
@@ -138,20 +138,20 @@ dist/assets/index-C56sNEog.js   13.88 kB │ gzip: 5.88 kB
 
 ```html
 <html lang="en">
-  <head>
-    <script
-      src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/cowsay@1.6.0/build/cowsay.umd.min.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
+	<head>
+		<script
+			src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/cowsay@1.6.0/build/cowsay.umd.min.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
 </html>
 ```
 
