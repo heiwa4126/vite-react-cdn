@@ -11,10 +11,10 @@ export default defineConfig({
 				modules: [
 					"react",
 					"react-dom",
-					{ name: "cowsay", var: "cowsay", file: ["build/cowsay.umd.min.js"] },
-				],
-			},
-		}),
+					{ name: "cowsay", var: "cowsay", file: ["build/cowsay.umd.min.js"] }
+				]
+			}
+		})
 		// cdn({
 		// 	modules: [
 		// 		"react",
@@ -30,5 +30,5 @@ export default defineConfig({
 		// 		},
 		// 	],
 		// }),
-	],
+	]
 });

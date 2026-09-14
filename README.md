@@ -54,18 +54,18 @@ dist/assets/index-DOwLkL4p.js   13.77 kB │ gzip: 5.83 kB
 ```html
 <!doctype html>
 <html lang="en">
-  <head>
-    <script
-      src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"
-      crossorigin="anonymous"
-    ></script>
+	<head>
+		<script
+			src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"
+			crossorigin="anonymous"
+		></script>
 
-    <meta charset="UTF-8" />
-  </head>
+		<meta charset="UTF-8" />
+	</head>
 </html>
 ```
 
@@ -138,20 +138,20 @@ dist/assets/index-C56sNEog.js   13.88 kB │ gzip: 5.88 kB
 
 ```html
 <html lang="en">
-  <head>
-    <script
-      src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/cowsay@1.6.0/build/cowsay.umd.min.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
+	<head>
+		<script
+			src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/cowsay@1.6.0/build/cowsay.umd.min.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
 </html>
 ```
 
