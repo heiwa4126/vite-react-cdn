@@ -1,5 +1,13 @@
 # vite-react-cdn
 
+## 重要
+
+**メンテしきれなくなったので、アーカイブします。**
+
+こっちに移行 ⇒ [heiwa4126/react-bun1: 2026-08 に bun 1.4 を記念して \`bun init --react\` で作ったテストプロジェクト](https://github.com/heiwa4126/react-bun1)
+
+## 概要
+
 Vite の React で CDN を使ってみる。Bun を使ったけど、npm, pnpm, yarn でも動くと思う
 
 Vite の Plugin は何種類かあるみたい。
